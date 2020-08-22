@@ -2,8 +2,7 @@
 //  GroceryCartTests.swift
 //  GroceryCartTests
 //
-//  Created by ESSA AL on 8/20/20.
-//  Copyright © 2020 ESSA ALDOWAIHES. All rights reserved.
+//  Created by ESSA AL.
 //
 
 import XCTest

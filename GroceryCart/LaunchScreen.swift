@@ -2,8 +2,7 @@
 //  LaunchScreen.swift
 //  GroceryCart
 //
-//  Created by ESSA AL on 8/21/20.
-//  Copyright © 2020 ESSA ALDOWAIHES. All rights reserved.
+//  Created by ESSA AL.
 //
 
 import UIKit

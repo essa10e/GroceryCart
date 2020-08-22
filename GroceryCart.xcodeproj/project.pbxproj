@@ -16,6 +16,9 @@
 		8A5EDD2924F0398E00505B6D /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD2824F0398D00505B6D /* LaunchScreen.swift */; };
 		8A5EDD2C24F0A72E00505B6D /* GroceryStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD2B24F0A72E00505B6D /* GroceryStructTests.swift */; };
 		8A5EDD2E24F0A8D000505B6D /* Grocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD2D24F0A8D000505B6D /* Grocery.swift */; };
+		8A5EDD3424F0BDB300505B6D /* GroceryManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD3324F0BDB300505B6D /* GroceryManagerTest.swift */; };
+		8A5EDD3624F0BF0900505B6D /* GroceryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD3524F0BF0900505B6D /* GroceryManager.swift */; };
+		8A5EDD3824F0EC1D00505B6D /* LibraryViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD3724F0EC1D00505B6D /* LibraryViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		8A5EDD2824F0398D00505B6D /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		8A5EDD2B24F0A72E00505B6D /* GroceryStructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStructTests.swift; sourceTree = "<group>"; };
 		8A5EDD2D24F0A8D000505B6D /* Grocery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grocery.swift; sourceTree = "<group>"; };
+		8A5EDD3324F0BDB300505B6D /* GroceryManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryManagerTest.swift; sourceTree = "<group>"; };
+		8A5EDD3524F0BF0900505B6D /* GroceryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryManager.swift; sourceTree = "<group>"; };
+		8A5EDD3724F0EC1D00505B6D /* LibraryViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				8A5EDD2D24F0A8D000505B6D /* Grocery.swift */,
+				8A5EDD3524F0BF0900505B6D /* GroceryManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				8A5EDD2B24F0A72E00505B6D /* GroceryStructTests.swift */,
+				8A5EDD3324F0BDB300505B6D /* GroceryManagerTest.swift */,
 			);
 			path = "Test Models";
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 		8A5EDD3224F0BA0F00505B6D /* Test Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A5EDD3724F0EC1D00505B6D /* LibraryViewControllerTest.swift */,
 			);
 			path = "Test Controllers";
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5EDD3624F0BF0900505B6D /* GroceryManager.swift in Sources */,
 				8A5EDD0B24EF47B000505B6D /* ViewController.swift in Sources */,
 				8A5EDD0924EF47AF00505B6D /* AppDelegate.swift in Sources */,
 				8A5EDD2924F0398E00505B6D /* LaunchScreen.swift in Sources */,
@@ -249,7 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5EDD3424F0BDB300505B6D /* GroceryManagerTest.swift in Sources */,
 				8A5EDD2C24F0A72E00505B6D /* GroceryStructTests.swift in Sources */,
+				8A5EDD3824F0EC1D00505B6D /* LibraryViewControllerTest.swift in Sources */,
 				8A5EDD1E24EF480000505B6D /* GroceryCartTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,13 +2,12 @@
 //  Grocery.swift
 //  GroceryCart
 //
-//  Created by ESSA AL on 8/21/20.
-//  Copyright © 2020 ESSA ALDOWAIHES. All rights reserved.
+//  Created by ESSA AL.
 //
 
 import Foundation
 
-struct Grocery {
+struct Grocery: Equatable {
     let itemName: String
     let brandName: String?
     
@@ -16,4 +15,17 @@ struct Grocery {
         self.itemName = itemName
         self.brandName = brandName
     }
+}
+
+func==(lhs: Grocery, rhs: Grocery) -> Bool {
+    
+    if lhs.itemName != rhs.itemName {
+        return false
+    }
+    
+    if lhs.brandName != rhs.brandName {
+        return false
+    }
+    
+    return true
 }

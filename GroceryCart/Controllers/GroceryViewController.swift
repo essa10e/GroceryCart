@@ -38,6 +38,28 @@ class GroceryViewController: UIViewController {
         return tv
     }()
     
+    let addBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("Add", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        btn.layer.cornerRadius = btn.frame.width / 2
+        //btn.layer.masksToBounds = true
+        btn.clipsToBounds = true
+        btn.backgroundColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
+        btn.addTarget(self, action: #selector(addGroceryItem), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func addGroceryItem() {
+        print("item btn")
+        dataService.groceryManager = groceryManager
+        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Item Added", brandName: "Test ONLY"))
+        groceryTableView.reloadData()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewConstroller")
@@ -46,6 +68,7 @@ class GroceryViewController: UIViewController {
         
         view.addSubview(titleLabel)
         view.addSubview(groceryTableView)
+        view.addSubview(addBtn)
         
         groceryTableView.register(GroceryCell.self, forCellReuseIdentifier: grocery_cell_id)
         
@@ -74,49 +97,15 @@ class GroceryViewController: UIViewController {
             groceryTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             groceryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             groceryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            groceryTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 5)
+            groceryTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -2),
+            
+            addBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            addBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            addBtn.heightAnchor.constraint(equalToConstant: 70),
+            addBtn.widthAnchor.constraint(equalToConstant: 70),
             
         ])
         
     }
 
-   
-
-}
-
-
-
-
-
-
-// MARK:- tableview cell:
-class ItemsCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setUpCellViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let cellView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    func setUpCellViews() {
-        addSubview(cellView)
-        NSLayoutConstraint.activate([
-            // UIView:
-            cellView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            cellView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-    }
 }

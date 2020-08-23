@@ -14,7 +14,7 @@ enum GrocerySection: Int {
 
 class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    //var groceryVC: GroceryViewController?
+    var groceryVC: GroceryViewController?
     var groceryManager: GroceryManager?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,10 +22,10 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
         guard let grocerySection = GrocerySection(rawValue: section) else { fatalError() }
         
         switch grocerySection {
-        case .groceryToBuy:
-            return groceryManager.groceryToBuyCount
-        case .groceryFound:
-            return groceryManager.groceryFoundCount
+            case .groceryToBuy:
+                return groceryManager.groceryToBuyCount
+            case .groceryFound:
+                return groceryManager.groceryFoundCount
         }
     }
     
@@ -50,14 +50,16 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didselect \(indexPath.row)")
+
         guard let groceryManager = groceryManager else { fatalError() }
         guard let grocerySection = GrocerySection(rawValue: indexPath.section) else { fatalError() }
-        print("didselect \(indexPath.row)")
+
         if grocerySection == .groceryToBuy {
             groceryManager.checkOffGroceryAtIndex(index: indexPath.row)
-          //  groceryVC = GroceryViewController()
-           // groceryVC!.groceryTableView.reloadData()
-            tableView.reloadData()
+            groceryVC = GroceryViewController()
+            groceryVC!.groceryTableView.reloadData()
+            //tableView.reloadData()
         }
     }
     

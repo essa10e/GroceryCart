@@ -14,6 +14,7 @@ enum GrocerySection: Int {
 
 class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelegate {
     
+    //var groceryVC: GroceryViewController?
     var groceryManager: GroceryManager?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +55,8 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
         print("didselect \(indexPath.row)")
         if grocerySection == .groceryToBuy {
             groceryManager.checkOffGroceryAtIndex(index: indexPath.row)
+          //  groceryVC = GroceryViewController()
+           // groceryVC!.groceryTableView.reloadData()
             tableView.reloadData()
         }
     }

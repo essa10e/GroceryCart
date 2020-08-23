@@ -35,6 +35,7 @@ class GroceryCell: UITableViewCell {
         let il = UILabel()
         il.translatesAutoresizingMaskIntoConstraints = false
         il.textColor = .white
+        il.font = UIFont.boldSystemFont(ofSize: 20)
         return il
     }()
     
@@ -42,6 +43,7 @@ class GroceryCell: UITableViewCell {
         let bl = UILabel()
         bl.translatesAutoresizingMaskIntoConstraints = false
         bl.textColor = .white
+        bl.font = UIFont.systemFont(ofSize: 15)
         return bl
     }()
     
@@ -52,10 +54,10 @@ class GroceryCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             // UIView:
-            cellView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            cellView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             cellView.heightAnchor.constraint(equalToConstant: 80),
             
             itemLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5),

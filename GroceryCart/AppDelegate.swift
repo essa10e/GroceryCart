@@ -16,11 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ......
         print("AppDelegate")
 
-        //let mainView = ViewController()
-        
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.makeKeyAndVisible()
-//        window?.rootViewController? = LaunchScreen() //UINavigationController(rootViewController: mainView)
         return true
     }
 

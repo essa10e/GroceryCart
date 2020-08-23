@@ -28,9 +28,10 @@ class LaunchScreen: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         launchLogoImageView.center = view.center
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.animateLaunchLogo()
-        })
+        animateLaunchLogo()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+//            self.animateLaunchLogo()
+//        })
         
     }
     

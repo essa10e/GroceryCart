@@ -21,7 +21,7 @@ class GroceryViewController: UIViewController {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.text = "GroceryCart"
-        title.textColor = UIColor(red: 0/255, green: 100/255, blue: 0/255, alpha: 1)
+        title.textColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
         title.textAlignment = .center
         title.font = UIFont.boldSystemFont(ofSize: 55)
         //title.backgroundColor = UIColor(red: 0/255, green: 100/255, blue: 0/255, alpha: 1)
@@ -31,9 +31,9 @@ class GroceryViewController: UIViewController {
     let groceryTableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = UIColor(red: 0/255, green: 100/255, blue: 0/255, alpha: 1)
+        tv.backgroundColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
         //tv.separatorStyle = .none
-        //tv.restorationIdentifier = "groceryTableViewController"
+        tv.layer.cornerRadius = 10
         tv.allowsSelection = false
         return tv
     }()

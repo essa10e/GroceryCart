@@ -3,14 +3,13 @@
 //  GroceryCartTests
 //
 //  Created by ESSA AL.
-// 
+//  Note: sut = system under test.
 
 import XCTest
 @testable import GroceryCart
 
 class GroceryManagerTest: XCTestCase {
 
-    // sut = system under test.
     var sut: GroceryManager!
     
     let cookies = Grocery(itemName: "Cookie")
@@ -26,7 +25,7 @@ class GroceryManagerTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // MARK: Initial Values
+    // MARK:- Initial Values
     func testInit_GroceryToBuy_ReturnsZero() {
         XCTAssertEqual(sut.groceryToBuyCount, 0)
     }
@@ -35,7 +34,7 @@ class GroceryManagerTest: XCTestCase {
         XCTAssertEqual(sut.groceryFoundCount, 0)
     }
 
-    // MARK: Add & Query:
+    // MARK:- Add & Query:
     func testAdd_GroceryToABuy_ReturnsZero() {
         sut.addGrocery(grocery: cookies)
         XCTAssertEqual(sut.groceryToBuyCount, 1)
@@ -48,7 +47,7 @@ class GroceryManagerTest: XCTestCase {
         XCTAssertEqual(toothPaste.itemName, groceryQueried.itemName)
     }
     
-    // MARK: Checking off
+    // MARK:- Checking off
     func testCheckingOffGrocery_UpdateGroceryManagerCount() {
         sut.addGrocery(grocery: chickenPizza)
         sut.checkOffGroceryAtIndex(index: 0)

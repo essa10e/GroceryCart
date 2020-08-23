@@ -49,7 +49,7 @@ class LaunchScreen: UIViewController {
         }, completion: { done in
             if done {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                    let vc = ViewController()
+                    let vc = GroceryViewController()
                     vc.modalTransitionStyle = .crossDissolve
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)

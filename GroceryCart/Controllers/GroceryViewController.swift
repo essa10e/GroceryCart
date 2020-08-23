@@ -9,6 +9,9 @@ import UIKit
 
 let grocery_cell_id = "groceryCell"
 
+let navyBlueColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
+let peachColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
+
 class GroceryViewController: UIViewController {
     
     // groceryTableView reference dataSource:
@@ -21,7 +24,7 @@ class GroceryViewController: UIViewController {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.text = "GroceryCart"
-        title.textColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
+        title.textColor = navyBlueColor
         title.textAlignment = .center
         title.font = UIFont.boldSystemFont(ofSize: 55)
         //title.backgroundColor = UIColor(red: 0/255, green: 100/255, blue: 0/255, alpha: 1)
@@ -31,7 +34,7 @@ class GroceryViewController: UIViewController {
     let groceryTableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
+        tv.backgroundColor = navyBlueColor
         //tv.separatorStyle = .none
         tv.layer.cornerRadius = 10
         tv.allowsSelection = false
@@ -41,13 +44,11 @@ class GroceryViewController: UIViewController {
     let addBtn: UIButton = {
         let btn = UIButton(type: .system)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Add", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        btn.layer.cornerRadius = btn.frame.width / 2
-        //btn.layer.masksToBounds = true
-        btn.clipsToBounds = true
-        btn.backgroundColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
+        btn.setTitle("+", for: .normal)
+        btn.setTitleColor(navyBlueColor, for: .normal)
+        btn.titleLabel?.textAlignment = .center
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
+        btn.backgroundColor = peachColor
         btn.addTarget(self, action: #selector(addGroceryItem), for: .touchUpInside)
         return btn
     }()
@@ -63,12 +64,8 @@ class GroceryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewConstroller")
-        view.backgroundColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
+        view.backgroundColor = peachColor
         
-        
-        view.addSubview(titleLabel)
-        view.addSubview(groceryTableView)
-        view.addSubview(addBtn)
         
         groceryTableView.register(GroceryCell.self, forCellReuseIdentifier: grocery_cell_id)
         
@@ -87,6 +84,18 @@ class GroceryViewController: UIViewController {
         
         
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews()")
+
+        view.addSubview(titleLabel)
+        view.addSubview(groceryTableView)
+        view.addSubview(addBtn)
+        
+        addBtn.layer.cornerRadius = addBtn.frame.width / 2
+        addBtn.clipsToBounds = true
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -97,15 +106,14 @@ class GroceryViewController: UIViewController {
             groceryTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             groceryTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             groceryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            groceryTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -2),
+            groceryTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0),
             
-            addBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            addBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            addBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
             addBtn.heightAnchor.constraint(equalToConstant: 70),
             addBtn.widthAnchor.constraint(equalToConstant: 70),
             
-        ])
-        
+            ])
     }
 
 }

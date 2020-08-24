@@ -14,7 +14,6 @@ enum GrocerySection: Int {
 
 class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var groceryVC: GroceryViewController?
     var groceryManager: GroceryManager?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,24 +49,21 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didselect \(indexPath.row)")
 
         guard let groceryManager = groceryManager else { fatalError() }
         guard let grocerySection = GrocerySection(rawValue: indexPath.section) else { fatalError() }
 
         if grocerySection == .groceryToBuy {
             groceryManager.checkOffGroceryAtIndex(index: indexPath.row)
-            groceryVC = GroceryViewController()
-            groceryVC!.groceryTableView.reloadData()
-            //tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let grocerySection = GrocerySection(rawValue: section) else { fatalError() }
-        
-        let sectionTitle = grocerySection.rawValue == 0 ? "Groceries" : "Checked Off"
+        let numberOfGroceriesToBuy = groceryManager?.groceryToBuyCount ?? 0
+        let sectionTitle = grocerySection.rawValue == 0 ? "\(numberOfGroceriesToBuy) Items" : "Checked Off"
         
         return sectionTitle
     }

@@ -25,6 +25,22 @@ class GroceryStructTests: XCTestCase {
         XCTAssertNotNil(testGrocery)
         XCTAssertEqual(testGrocery.itemName, "Almond Milk")
     }
+    
+    func testInit_GroceryWithItemNameAndDefaultAmountEqualOne() {
+        let testGrocery = Grocery(itemName: "Almond Milk")
+        
+        XCTAssertNotNil(testGrocery)
+        XCTAssertEqual(testGrocery.itemName, "Almond Milk")
+        XCTAssertEqual(testGrocery.amount, 1)
+    }
+    
+    func testInit_GroceryWithItemNameAndAmount() {
+        let testGrocery = Grocery(itemName: "Almond Milk", amount: 4)
+        
+        XCTAssertNotNil(testGrocery)
+        XCTAssertEqual(testGrocery.itemName, "Almond Milk")
+        XCTAssertEqual(testGrocery.amount, 4)
+    }
 
     func testInit_SetGroceryItemNameAndBrandName() {
         let testGrocery = Grocery(itemName: "Eggs", brandName: "EggBrand")

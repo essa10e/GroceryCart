@@ -34,10 +34,10 @@ class GroceryViewController: UIViewController {
     let groceryTableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = navyBlueColor
-        //tv.separatorStyle = .none
+        tv.backgroundColor = .clear //navyBlueColor
+        tv.separatorStyle = .none
         tv.layer.cornerRadius = 10
-        tv.allowsSelection = false
+        //tv.allowsSelection = false
         return tv
     }()
     
@@ -66,7 +66,6 @@ class GroceryViewController: UIViewController {
         print("ViewConstroller")
         view.backgroundColor = peachColor
         
-        
         groceryTableView.register(GroceryCell.self, forCellReuseIdentifier: grocery_cell_id)
         
         self.groceryTableView.delegate = dataService //self
@@ -74,14 +73,15 @@ class GroceryViewController: UIViewController {
         
         // * Dummy Data *
         dataService.groceryManager = groceryManager
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Pizza", brandName: "PizzaHut"))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Hand Soap", brandName: "Hawai Soa"))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Soft Drink", brandName: "Pepsi"))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Orange", brandName: "Lakeers"))
+        /*
+        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Pizza", brandName: "PizzaHut", amount: 2))
+        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Hand Soap", brandName: "Hawai Soa", amount: 3))
+        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Soft Drink", brandName: "Pepsi", amount: 10))
+        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Orange", brandName: "Lakeers", amount: 20))
         dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Kiwi", brandName: "Lakeers"))
         dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Chips", brandName: "Laysssss"))
         groceryTableView.reloadData()
-        
+        */
         
         
     }
@@ -95,6 +95,9 @@ class GroceryViewController: UIViewController {
         view.addSubview(addBtn)
         
         addBtn.layer.cornerRadius = addBtn.frame.width / 2
+        addBtn.layer.borderWidth = 2
+        addBtn.layer.borderColor = navyBlueColor.cgColor
+        addBtn.layer.masksToBounds = true
         addBtn.clipsToBounds = true
         
         NSLayoutConstraint.activate([
@@ -113,7 +116,7 @@ class GroceryViewController: UIViewController {
             addBtn.heightAnchor.constraint(equalToConstant: 70),
             addBtn.widthAnchor.constraint(equalToConstant: 70),
             
-            ])
+        ])
     }
 
 }

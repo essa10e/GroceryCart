@@ -34,10 +34,10 @@ class GroceryViewController: UIViewController {
     let groceryTableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = .clear //navyBlueColor
+        tv.backgroundColor = .clear
         tv.separatorStyle = .none
         tv.layer.cornerRadius = 10
-        //tv.allowsSelection = false
+        tv.showsVerticalScrollIndicator = false
         return tv
     }()
     
@@ -49,6 +49,7 @@ class GroceryViewController: UIViewController {
         btn.titleLabel?.textAlignment = .center
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 70)
         btn.backgroundColor = peachColor
+        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         btn.addTarget(self, action: #selector(addGroceryItem), for: .touchUpInside)
         return btn
     }()
@@ -63,7 +64,7 @@ class GroceryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewConstroller")
+        print("ViewController")
         view.backgroundColor = peachColor
         
         groceryTableView.register(GroceryCell.self, forCellReuseIdentifier: grocery_cell_id)

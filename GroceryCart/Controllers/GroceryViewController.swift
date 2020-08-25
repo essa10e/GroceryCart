@@ -19,6 +19,7 @@ class GroceryViewController: UIViewController {
     
     var groceryManager = GroceryManager()
     
+    let cardView = AddGroceryCardViewController()
     
     private let titleLabel: UILabel = {
         let title = UILabel()
@@ -55,11 +56,26 @@ class GroceryViewController: UIViewController {
     }()
     
     @objc func addGroceryItem() {
-        print("item btn")
         dataService.groceryManager = groceryManager
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Item Added", brandName: "Test ONLY"))
-        groceryTableView.reloadData()
-
+        
+        //cardView.modalTransitionStyle = .crossDissolve
+        cardView.modalPresentationStyle = .formSheet
+        self.present(cardView, animated: true)
+        
+        cardView.submitBtn.addTarget(self, action: #selector(submitOneItem), for: .touchUpInside)
+        
+        
+    }
+    
+    @objc func submitOneItem() {
+        self.dismiss(animated: true) {
+            let _itemName = self.cardView.itemNameTextField.text
+            let _note = self.cardView.noteTextField.text
+            //let _amount = cardView.amountLabel.text
+    
+            self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: _itemName!, note: _note))
+            self.groceryTableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -72,17 +88,7 @@ class GroceryViewController: UIViewController {
         self.groceryTableView.delegate = dataService //self
         self.groceryTableView.dataSource = dataService //self
         
-        // * Dummy Data *
-        dataService.groceryManager = groceryManager
-        /*
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Pizza", brandName: "PizzaHut", amount: 2))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Hand Soap", brandName: "Hawai Soa", amount: 3))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Soft Drink", brandName: "Pepsi", amount: 10))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Orange", brandName: "Lakeers", amount: 20))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Kiwi", brandName: "Lakeers"))
-        dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: "Chips", brandName: "Laysssss"))
-        groceryTableView.reloadData()
-        */
+        //dataService.groceryManager = groceryManager
         
         
     }

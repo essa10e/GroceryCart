@@ -43,9 +43,9 @@ class GroceryStructTests: XCTestCase {
     }
 
     func testInit_SetGroceryItemNameAndBrandName() {
-        let testGrocery = Grocery(itemName: "Eggs", brandName: "EggBrand")
+        let testGrocery = Grocery(itemName: "Eggs", note: "EggBrand")
         XCTAssertNotNil(testGrocery)
-        XCTAssertEqual(testGrocery.brandName, "EggBrand")
+        XCTAssertEqual(testGrocery.note, "EggBrand")
     }
     
     // MARK:- Equatable Tests
@@ -64,8 +64,8 @@ class GroceryStructTests: XCTestCase {
     }
     
     func testEquatable_ReturnsNotEqualForDifferentBrandName() {
-        let groceryItem1 = Grocery(itemName: "Pizza", brandName: "PizzaHut")
-        let groceryItem2 = Grocery(itemName: "Pizza", brandName: "PizzaWhat")
+        let groceryItem1 = Grocery(itemName: "Pizza", note: "PizzaHut")
+        let groceryItem2 = Grocery(itemName: "Pizza", note: "PizzaWhat")
         
         XCTAssertNotEqual(groceryItem1, groceryItem2)
     }

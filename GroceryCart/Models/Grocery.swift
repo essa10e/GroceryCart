@@ -9,12 +9,12 @@ import Foundation
 
 struct Grocery: Equatable {
     let itemName: String
-    let brandName: String?
+    let note: String?
     let amount: Int
     
-    init(itemName: String, brandName: String? = nil, amount: Int = 1) {
+    init(itemName: String, note: String? = nil, amount: Int = 1) {
         self.itemName = itemName
-        self.brandName = brandName
+        self.note = note
         self.amount = amount
     }
 }
@@ -25,7 +25,7 @@ func==(lhs: Grocery, rhs: Grocery) -> Bool {
         return false
     }
     
-    if lhs.brandName != rhs.brandName {
+    if lhs.note != rhs.note {
         return false
     }
     

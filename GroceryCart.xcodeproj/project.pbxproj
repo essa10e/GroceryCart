@@ -24,6 +24,7 @@
 		8A5EDD4124F1BB3200505B6D /* GroceryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4024F1BB3100505B6D /* GroceryCell.swift */; };
 		8A5EDD4424F1C71A00505B6D /* MockExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4324F1C71A00505B6D /* MockExtensions.swift */; };
 		8A5EDD4724F1E92C00505B6D /* GroceryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4624F1E92C00505B6D /* GroceryCellTests.swift */; };
+		8A5EDD4B24F57D0C00505B6D /* AddGroceryCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4A24F57D0C00505B6D /* AddGroceryCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		8A5EDD4024F1BB3100505B6D /* GroceryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCell.swift; sourceTree = "<group>"; };
 		8A5EDD4324F1C71A00505B6D /* MockExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExtensions.swift; sourceTree = "<group>"; };
 		8A5EDD4624F1E92C00505B6D /* GroceryCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCellTests.swift; sourceTree = "<group>"; };
+		8A5EDD4A24F57D0C00505B6D /* AddGroceryCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8A5EDD0A24EF47B000505B6D /* GroceryViewController.swift */,
+				8A5EDD4A24F57D0C00505B6D /* AddGroceryCardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5EDD4B24F57D0C00505B6D /* AddGroceryCardViewController.swift in Sources */,
 				8A5EDD3624F0BF0900505B6D /* GroceryManager.swift in Sources */,
 				8A5EDD3B24F1728400505B6D /* GroceryCartDataService.swift in Sources */,
 				8A5EDD0B24EF47B000505B6D /* GroceryViewController.swift in Sources */,

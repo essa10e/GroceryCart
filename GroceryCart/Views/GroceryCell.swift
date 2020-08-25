@@ -21,7 +21,7 @@ class GroceryCell: UITableViewCell {
 
     func configGroceryCell(grocery: Grocery) {
         self.itemLabel.text = grocery.itemName
-        self.brandLabel.text = grocery.brandName
+        self.noteLabel.text = grocery.note
         self.amountLabel.text = "\(grocery.amount)"
     }
     
@@ -29,6 +29,7 @@ class GroceryCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.sizeToFit()
         return view
     }()
     
@@ -49,10 +50,11 @@ class GroceryCell: UITableViewCell {
         return il
     }()
     
-    let brandLabel: UILabel = {
+    let noteLabel: UILabel = {
         let bl = UILabel()
         bl.translatesAutoresizingMaskIntoConstraints = false
         bl.textColor = .white
+        bl.numberOfLines = 0
         bl.font = UIFont.systemFont(ofSize: 15)
         return bl
     }()
@@ -61,7 +63,7 @@ class GroceryCell: UITableViewCell {
         addSubview(cellView)
         addSubview(amountLabel)
         addSubview(itemLabel)
-        addSubview(brandLabel)
+        addSubview(noteLabel)
         
         NSLayoutConstraint.activate([
             // UIView:
@@ -69,7 +71,7 @@ class GroceryCell: UITableViewCell {
             cellView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             cellView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            cellView.heightAnchor.constraint(equalToConstant: 80),
+            cellView.heightAnchor.constraint(equalToConstant: 70),
             
             amountLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5),
             amountLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
@@ -81,12 +83,12 @@ class GroceryCell: UITableViewCell {
             itemLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5),
             itemLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            brandLabel.topAnchor.constraint(equalTo: itemLabel.bottomAnchor, constant: 5),
-            brandLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 5),
-            brandLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5),
-            brandLabel.heightAnchor.constraint(equalToConstant: 20),
+            noteLabel.topAnchor.constraint(equalTo: itemLabel.bottomAnchor, constant: 5),
+            noteLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
+            noteLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5),
+            noteLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: 2),
 
             
-            ])
+        ])
     }
 }

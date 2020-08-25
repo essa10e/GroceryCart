@@ -31,11 +31,10 @@ class GroceryCellTests: XCTestCase {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groceryCell",
                                                  for: IndexPath(row: 0, section: 0)) as! GroceryCell
         
-        cell.configGroceryCell(grocery: Grocery(itemName: "Fruits", brandName: "Whatever Brand"))
+        cell.configGroceryCell(grocery: Grocery(itemName: "Fruits", note: "Whatever Brand"))
         
         XCTAssertEqual(cell.itemLabel.text, "Fruits")
-        XCTAssertEqual(cell.brandLabel.text, "Whatever Brand")
-
+        XCTAssertEqual(cell.noteLabel.text, "Whatever Brand")
     }
 
     

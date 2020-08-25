@@ -62,7 +62,6 @@ class AddGroceryCardViewController: UIViewController {
         let iTextField = UITextField()
         iTextField.translatesAutoresizingMaskIntoConstraints = false
         iTextField.text = ".."
-        
         return iTextField
     }()
     
@@ -140,7 +139,7 @@ class AddGroceryCardViewController: UIViewController {
             itemNameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             itemNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             //itemNameLabel.trailingAnchor.constraint(equalTo: topAnchor, constant: 5),
-            itemNameLabel.widthAnchor.constraint(equalToConstant: 65),
+            itemNameLabel.widthAnchor.constraint(equalToConstant: 85),
             itemNameLabel.heightAnchor.constraint(equalToConstant: 35),
             
             // Item Name TextField:
@@ -153,7 +152,7 @@ class AddGroceryCardViewController: UIViewController {
             noteLabel.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 5),
             noteLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             //noteLabel.trailingAnchor.constraint(equalTo: topAnchor, constant: 5),
-            noteLabel.widthAnchor.constraint(equalToConstant: 65),
+            noteLabel.widthAnchor.constraint(equalToConstant: 85),
             noteLabel.heightAnchor.constraint(equalToConstant: 35),
             
             // Note TextField:

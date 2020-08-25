@@ -59,11 +59,16 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
         }
     }
     
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        <#code#>
+//    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let grocerySection = GrocerySection(rawValue: section) else { fatalError() }
         let numberOfGroceriesToBuy = groceryManager?.groceryToBuyCount ?? 0
-        let sectionTitle = grocerySection.rawValue == 0 ? "\(numberOfGroceriesToBuy) Items" : "Checked Off"
+        let sectionTitle = grocerySection.rawValue == 0
+            ? numberOfGroceriesToBuy < 2 ? "\(numberOfGroceriesToBuy) Item" : "\(numberOfGroceriesToBuy) Items"
+            : "Checked Off"
         
         return sectionTitle
     }

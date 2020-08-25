@@ -15,10 +15,8 @@ let peachColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
 class GroceryViewController: UIViewController {
     
     // groceryTableView reference dataSource:
-    var dataService = GroceryCartDataService()
-    
+    var dataService = GroceryCartDataService()    
     var groceryManager = GroceryManager()
-    
     let cardView = AddGroceryCardViewController()
     
     private let titleLabel: UILabel = {
@@ -28,7 +26,7 @@ class GroceryViewController: UIViewController {
         title.textColor = navyBlueColor
         title.textAlignment = .center
         title.font = UIFont.boldSystemFont(ofSize: 55)
-        //title.backgroundColor = UIColor(red: 0/255, green: 100/255, blue: 0/255, alpha: 1)
+
         return title
     }()
     
@@ -39,6 +37,8 @@ class GroceryViewController: UIViewController {
         tv.separatorStyle = .none
         tv.layer.cornerRadius = 10
         tv.showsVerticalScrollIndicator = false
+        tv.sectionHeaderHeight = 50
+        
         return tv
     }()
     
@@ -58,13 +58,10 @@ class GroceryViewController: UIViewController {
     @objc func addGroceryItem() {
         dataService.groceryManager = groceryManager
         
-        //cardView.modalTransitionStyle = .crossDissolve
-        cardView.modalPresentationStyle = .formSheet
+        cardView.modalPresentationStyle = .popover
         self.present(cardView, animated: true)
         
         cardView.submitBtn.addTarget(self, action: #selector(submitOneItem), for: .touchUpInside)
-        
-        
     }
     
     @objc func submitOneItem() {
@@ -80,22 +77,17 @@ class GroceryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewController")
         view.backgroundColor = peachColor
         
         groceryTableView.register(GroceryCell.self, forCellReuseIdentifier: grocery_cell_id)
         
-        self.groceryTableView.delegate = dataService //self
-        self.groceryTableView.dataSource = dataService //self
-        
-        //dataService.groceryManager = groceryManager
-        
+        self.groceryTableView.delegate = dataService
+        self.groceryTableView.dataSource = dataService
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews()")
 
         view.addSubview(titleLabel)
         view.addSubview(groceryTableView)

@@ -61,7 +61,9 @@ class AddGroceryCardViewController: UIViewController {
     let itemNameTextField: UITextField = {
         let iTextField = UITextField()
         iTextField.translatesAutoresizingMaskIntoConstraints = false
-        iTextField.text = ".."
+        iTextField.placeholder = "Item name..."
+        iTextField.borderStyle = .bezel
+        iTextField.layer.borderColor = navyBlueColor.cgColor
         return iTextField
     }()
     
@@ -85,8 +87,9 @@ class AddGroceryCardViewController: UIViewController {
     let noteTextField: UITextField = {
         let nTextField = UITextField()
         nTextField.translatesAutoresizingMaskIntoConstraints = false
-        nTextField.text = "..."
-        nTextField.backgroundColor = .brown
+        nTextField.placeholder = "Any specific detail..."
+        nTextField.borderStyle = .bezel
+        nTextField.layer.borderColor = navyBlueColor.cgColor
         return nTextField
     }()
     

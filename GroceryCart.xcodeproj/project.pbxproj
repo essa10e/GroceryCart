@@ -25,6 +25,7 @@
 		8A5EDD4424F1C71A00505B6D /* MockExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4324F1C71A00505B6D /* MockExtensions.swift */; };
 		8A5EDD4724F1E92C00505B6D /* GroceryCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4624F1E92C00505B6D /* GroceryCellTests.swift */; };
 		8A5EDD4B24F57D0C00505B6D /* AddGroceryCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4A24F57D0C00505B6D /* AddGroceryCardViewController.swift */; };
+		8A5EDD4F24F6B66900505B6D /* GroceryCartCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EDD4D24F6B66600505B6D /* GroceryCartCoreData.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		8A5EDD4324F1C71A00505B6D /* MockExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExtensions.swift; sourceTree = "<group>"; };
 		8A5EDD4624F1E92C00505B6D /* GroceryCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCellTests.swift; sourceTree = "<group>"; };
 		8A5EDD4A24F57D0C00505B6D /* AddGroceryCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryCardViewController.swift; sourceTree = "<group>"; };
+		8A5EDD4E24F6B66800505B6D /* GroceryCartCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GroceryCartCoreData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,16 +103,15 @@
 		8A5EDD0724EF47AF00505B6D /* GroceryCart */ = {
 			isa = PBXGroup;
 			children = (
+				8A5EDD4C24F61B9F00505B6D /* AppDelegate and Launch Screen */,
 				8A5EDD3F24F1BA6300505B6D /* Views */,
 				8A5EDD3924F1721000505B6D /* GroceryCartDataService */,
 				8A5EDD3024F0B9BC00505B6D /* Controllers */,
 				8A5EDD2F24F0B99C00505B6D /* Models */,
-				8A5EDD0824EF47AF00505B6D /* AppDelegate.swift */,
-				8A5EDD2824F0398D00505B6D /* LaunchScreen.swift */,
 				8A5EDD0C24EF47B000505B6D /* Main.storyboard */,
 				8A5EDD0F24EF47FC00505B6D /* Assets.xcassets */,
-				8A5EDD1124EF47FC00505B6D /* LaunchScreen.storyboard */,
 				8A5EDD1424EF47FC00505B6D /* Info.plist */,
+				8A5EDD4D24F6B66600505B6D /* GroceryCartCoreData.xcdatamodeld */,
 			);
 			path = GroceryCart;
 			sourceTree = "<group>";
@@ -202,6 +203,16 @@
 				8A5EDD4624F1E92C00505B6D /* GroceryCellTests.swift */,
 			);
 			path = "Test Views";
+			sourceTree = "<group>";
+		};
+		8A5EDD4C24F61B9F00505B6D /* AppDelegate and Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8A5EDD0824EF47AF00505B6D /* AppDelegate.swift */,
+				8A5EDD2824F0398D00505B6D /* LaunchScreen.swift */,
+				8A5EDD1124EF47FC00505B6D /* LaunchScreen.storyboard */,
+			);
+			path = "AppDelegate and Launch Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5EDD4F24F6B66900505B6D /* GroceryCartCoreData.xcdatamodeld in Sources */,
 				8A5EDD4B24F57D0C00505B6D /* AddGroceryCardViewController.swift in Sources */,
 				8A5EDD3624F0BF0900505B6D /* GroceryManager.swift in Sources */,
 				8A5EDD3B24F1728400505B6D /* GroceryCartDataService.swift in Sources */,
@@ -585,6 +597,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8A5EDD4D24F6B66600505B6D /* GroceryCartCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8A5EDD4E24F6B66800505B6D /* GroceryCartCoreData.xcdatamodel */,
+			);
+			currentVersion = 8A5EDD4E24F6B66800505B6D /* GroceryCartCoreData.xcdatamodel */;
+			path = GroceryCartCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8A5EDCFD24EF47AE00505B6D /* Project object */;
 }

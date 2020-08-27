@@ -20,19 +20,16 @@ class LaunchScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LaunchScreen")
+
         view.backgroundColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
         view.addSubview(launchLogoImageView)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         launchLogoImageView.center = view.center
         animateLaunchLogo()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-//            self.animateLaunchLogo()
-//        })
-        
     }
     
     private func animateLaunchLogo() {

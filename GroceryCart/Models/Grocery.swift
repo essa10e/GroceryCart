@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Grocery: Equatable {
+class Grocery: Equatable {
     let itemName: String
     let note: String?
-    let amount: Int
+    let quantity: Int
     
-    init(itemName: String, note: String? = nil, amount: Int = 1) {
+    init(itemName: String, note: String? = nil, quantity: Int = 1) {
         self.itemName = itemName
         self.note = note
-        self.amount = amount
+        self.quantity = quantity
     }
 }
 
@@ -29,7 +29,7 @@ func==(lhs: Grocery, rhs: Grocery) -> Bool {
         return false
     }
     
-    if lhs.amount != rhs.amount {
+    if lhs.quantity != rhs.quantity {
         return false
     }
     

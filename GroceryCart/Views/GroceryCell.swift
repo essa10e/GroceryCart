@@ -22,7 +22,7 @@ class GroceryCell: UITableViewCell {
     func configGroceryCell(grocery: Grocery) {
         self.itemLabel.text = grocery.itemName
         self.noteLabel.text = grocery.note
-        self.amountLabel.text = "\(grocery.amount)"
+        self.quantityLabel.text = "\(grocery.quantity)"
     }
     
     let cellView: UIView = {
@@ -33,7 +33,7 @@ class GroceryCell: UITableViewCell {
         return view
     }()
     
-    let amountLabel: UILabel = {
+    let quantityLabel: UILabel = {
         let al = UILabel()
         al.translatesAutoresizingMaskIntoConstraints = false
         al.textColor = peachColor
@@ -61,7 +61,7 @@ class GroceryCell: UITableViewCell {
     
     func setUpCellViews() {
         addSubview(cellView)
-        addSubview(amountLabel)
+        addSubview(quantityLabel)
         addSubview(itemLabel)
         addSubview(noteLabel)
         
@@ -73,13 +73,13 @@ class GroceryCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             cellView.heightAnchor.constraint(equalToConstant: 70),
             
-            amountLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5),
-            amountLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
-            amountLabel.heightAnchor.constraint(equalToConstant: 30),
-            amountLabel.widthAnchor.constraint(equalToConstant: 40),
+            quantityLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5),
+            quantityLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
+            quantityLabel.heightAnchor.constraint(equalToConstant: 30),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 40),
             
             itemLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5),
-            itemLabel.leadingAnchor.constraint(equalTo: amountLabel.trailingAnchor, constant: 5),
+            itemLabel.leadingAnchor.constraint(equalTo: quantityLabel.trailingAnchor, constant: 5),
             itemLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5),
             itemLabel.heightAnchor.constraint(equalToConstant: 30),
             

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Grocery: Equatable {
+struct Grocery: Equatable {
     let itemName: String
     let note: String?
     let quantity: Int

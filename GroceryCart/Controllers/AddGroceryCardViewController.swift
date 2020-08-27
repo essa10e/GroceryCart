@@ -44,8 +44,9 @@ class AddGroceryCardViewController: UIViewController {
         let iLabel = UILabel()
         iLabel.translatesAutoresizingMaskIntoConstraints = false
         iLabel.text = "Add New Item"
+        iLabel.textAlignment = .center
         iLabel.font = UIFont.boldSystemFont(ofSize: 50)
-        iLabel.textColor = navyBlueColor
+        iLabel.textColor = .white
         return iLabel
     }()
     
@@ -55,6 +56,7 @@ class AddGroceryCardViewController: UIViewController {
         iLabel.text = "Item:"
         iLabel.textColor = navyBlueColor
         iLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        iLabel.backgroundColor = .lightGray
         return iLabel
     }()
     
@@ -67,12 +69,39 @@ class AddGroceryCardViewController: UIViewController {
         return iTextField
     }()
     
-    let amountLabel: UILabel = {
-        let alabel = UILabel()
-        alabel.translatesAutoresizingMaskIntoConstraints = false
-        alabel.text = "Amount:"
-        alabel.textColor = navyBlueColor
-        return alabel
+    let quantityLabel: UILabel = {
+        let qLabel = UILabel()
+        qLabel.translatesAutoresizingMaskIntoConstraints = false
+        qLabel.text = "Quantity:"
+        qLabel.textColor = navyBlueColor
+        qLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        qLabel.backgroundColor = .lightGray
+        return qLabel
+    }()
+    
+    let quantityStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        stepper.minimumValue = 1
+        stepper.maximumValue = 45
+        stepper.tintColor = navyBlueColor
+        stepper.addTarget(self, action: #selector(stepperValue), for: .touchUpInside)
+        return stepper
+    }()
+    @objc func stepperValue(_ sender: UIStepper) {
+        quantityStepperLabel.text = "\(sender.value)"
+    }
+    let quantityStepperLabel: UILabel = {
+        let sLabel = UILabel()
+        sLabel.translatesAutoresizingMaskIntoConstraints = false
+        sLabel.text = "1"
+        sLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        sLabel.backgroundColor = .lightGray
+        sLabel.layer.cornerRadius = 50
+        sLabel.clipsToBounds = true
+        sLabel.layer.borderWidth = 1
+        sLabel.layer.borderColor = navyBlueColor.cgColor
+        return sLabel
     }()
     
     fileprivate let noteLabel: UILabel = {
@@ -81,6 +110,7 @@ class AddGroceryCardViewController: UIViewController {
         iLabel.text = "Note:"
         iLabel.textColor = navyBlueColor
         iLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        iLabel.backgroundColor = .lightGray
         return iLabel
     }()
     
@@ -88,7 +118,7 @@ class AddGroceryCardViewController: UIViewController {
         let nTextField = UITextField()
         nTextField.translatesAutoresizingMaskIntoConstraints = false
         nTextField.placeholder = "Any specific detail..."
-        nTextField.borderStyle = .bezel
+        nTextField.borderStyle = .line
         nTextField.layer.borderColor = navyBlueColor.cgColor
         return nTextField
     }()
@@ -105,74 +135,85 @@ class AddGroceryCardViewController: UIViewController {
     func setupViews() {
         view.addSubview(cardView)
         cardView.addSubview(cardViewHandleArea)
-        cardViewHandleArea.addSubview(cardViewHandleShape)
-        cardView.addSubview(titleLabel)
+        cardViewHandleArea.addSubview(titleLabel)
+        
         cardView.addSubview(itemNameLabel)
         cardView.addSubview(itemNameTextField)
+        
         cardView.addSubview(noteLabel)
         cardView.addSubview(noteTextField)
+        
+        cardView.addSubview(quantityLabel)
+        cardView.addSubview(quantityStepper)
+        cardView.addSubview(quantityStepperLabel)
+        
         cardView.addSubview(submitBtn)
         
-        
         NSLayoutConstraint.activate([
-            // CardView:
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
             // CardViewHandleArea:
-            cardViewHandleArea.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 0),
-            cardViewHandleArea.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 0),
-            cardViewHandleArea.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: 0),
-            cardViewHandleArea.heightAnchor.constraint(equalToConstant: 60),
-            // CardViewHandleShape:
-            cardViewHandleShape.topAnchor.constraint(equalTo: cardViewHandleArea.topAnchor, constant: 5),
-            cardViewHandleShape.centerXAnchor.constraint(equalTo: cardViewHandleArea.centerXAnchor),
-            cardViewHandleShape.centerYAnchor.constraint(equalTo: cardViewHandleArea.centerYAnchor),
-            //cardViewHandleShape.heightAnchor.constraint(equalToConstant: 5),
-            cardViewHandleShape.widthAnchor.constraint(equalToConstant: 30),
-            // Title Label:
-            titleLabel.topAnchor.constraint(equalTo: cardViewHandleArea.bottomAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
-            titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
-            titleLabel.heightAnchor.constraint(equalToConstant: 35),
+            cardViewHandleArea.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 2),
+            cardViewHandleArea.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 2),
+            cardViewHandleArea.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -2),
+            cardViewHandleArea.heightAnchor.constraint(equalToConstant: 80),
             
-            // Item Name Label:
-            itemNameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: cardViewHandleArea.topAnchor, constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: cardViewHandleArea.leadingAnchor, constant: 5),
+            titleLabel.trailingAnchor.constraint(equalTo: cardViewHandleArea.trailingAnchor, constant: -5),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            
+            itemNameLabel.topAnchor.constraint(equalTo: cardViewHandleArea.bottomAnchor, constant: 10),
             itemNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
-            //itemNameLabel.trailingAnchor.constraint(equalTo: topAnchor, constant: 5),
-            itemNameLabel.widthAnchor.constraint(equalToConstant: 85),
-            itemNameLabel.heightAnchor.constraint(equalToConstant: 35),
+            itemNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
+            itemNameLabel.heightAnchor.constraint(equalToConstant: 40),
             
-            // Item Name TextField:
-            itemNameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            itemNameTextField.leadingAnchor.constraint(equalTo: itemNameLabel.trailingAnchor, constant: 5),
+            itemNameTextField.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 10),
+            itemNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             itemNameTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
-            itemNameTextField.heightAnchor.constraint(equalToConstant: 35),
+            itemNameTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            // Note Label:
-            noteLabel.topAnchor.constraint(equalTo: itemNameLabel.bottomAnchor, constant: 5),
+            
+            noteLabel.topAnchor.constraint(equalTo: itemNameTextField.bottomAnchor, constant: 10),
             noteLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
-            //noteLabel.trailingAnchor.constraint(equalTo: topAnchor, constant: 5),
-            noteLabel.widthAnchor.constraint(equalToConstant: 85),
-            noteLabel.heightAnchor.constraint(equalToConstant: 35),
+            noteLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
+            noteLabel.heightAnchor.constraint(equalToConstant: 40),
             
-            // Note TextField:
-            noteTextField.topAnchor.constraint(equalTo: itemNameTextField.bottomAnchor, constant: 5),
-            noteTextField.leadingAnchor.constraint(equalTo: noteLabel.trailingAnchor, constant: 5),
+            noteTextField.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: 10),
+            noteTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             noteTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
-            noteTextField.heightAnchor.constraint(equalToConstant: 35),
+            noteTextField.heightAnchor.constraint(equalToConstant: 50),
+        
+            quantityLabel.topAnchor.constraint(equalTo: noteTextField.bottomAnchor, constant: 10),
+            quantityLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
+            quantityLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
+            quantityLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            quantityStepperLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 10),
+            quantityStepperLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
+            quantityStepperLabel.widthAnchor.constraint(equalToConstant: 100),
+            quantityStepperLabel.heightAnchor.constraint(equalToConstant: 100),
+            
+            quantityStepper.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 10),
+            quantityStepper.leadingAnchor.constraint(equalTo: quantityStepperLabel.trailingAnchor, constant: 5),
+            quantityStepper.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
+            quantityStepper.widthAnchor.constraint(equalToConstant: 100),
+            quantityStepper.heightAnchor.constraint(equalToConstant: 100),
+            
+            
             
             // Submit Button:
-            submitBtn.topAnchor.constraint(equalTo: noteTextField.bottomAnchor, constant: 10),
+            submitBtn.topAnchor.constraint(equalTo: quantityStepper.bottomAnchor, constant: 10),
             submitBtn.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             submitBtn.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
             //submitBtn.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 5),
             //submitBtn.widthAnchor.constraint(equalToConstant: 100),
             submitBtn.heightAnchor.constraint(equalToConstant: 50)
-            ])
+            
+        ])
     }
-    
-
 }

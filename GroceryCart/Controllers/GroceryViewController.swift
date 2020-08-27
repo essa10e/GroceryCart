@@ -148,22 +148,23 @@ class GroceryViewController: UIViewController {
         self.dismiss(animated: true) {
             let _itemName = self.cardView.itemNameTextField.text
             let _note = self.cardView.noteTextField.text
-            //let _quantity = "\(self.cardView.amountLabel.text)"
+            let _quantity = Int16(self.cardView.quantityStepper.value)
     
             self.cardView.itemNameTextField.text?.removeAll()
             self.cardView.noteTextField.text?.removeAll()
+            self.cardView.quantityStepperLabel.text = "1"
             
-            self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: _itemName!, note: _note))
+            self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: _itemName!, note: _note, quantity: Int(_quantity)))
             self.groceryTableView.reloadData()
             
-            self.saveGroceryToDB(itemName: _itemName!, note: _note!)
+            self.saveGroceryToDB(itemName: _itemName!, note: _note!, quantity: _quantity)
         }
     }
     
     
     
     // MARK:- Save to CoreData
-    func saveGroceryToDB(itemName: String, note: String) {
+    func saveGroceryToDB(itemName: String, note: String, quantity: Int16) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         
@@ -171,11 +172,11 @@ class GroceryViewController: UIViewController {
         let itemm = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         itemm.setValue(itemName, forKey: "itemName")
-        itemm.setValue(note, forKey:"note")
+        itemm.setValue(note, forKey: "note")
+        itemm.setValue(quantity, forKey: "quantity")
         
-        let b = itemm.value(forKey: "note")
-        print(b!)
         print(itemm)
+        
         do {
             try managedContext.save()
             groceryMO.append(itemm as! GroceryMO)

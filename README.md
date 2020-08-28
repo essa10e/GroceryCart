@@ -1,6 +1,7 @@
 # GroceryCart
 Quickly Add and Check Items Off Your Grocery List.
 
+# howThisAppCreated()
     func howThisAppCreated() {
         print("- 100% Swift.")
         print("- No Storyboard.")
@@ -8,6 +9,6 @@ Quickly Add and Check Items Off Your Grocery List.
         print("- CoreData.")
     }
 
-App screen shot link:
+# App screen shot link:
   https://drive.google.com/file/d/1ATUZbeVWjpq8G5vNwubXeTvWVgFeD4C8/view?usp=sharing
 

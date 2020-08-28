@@ -2,7 +2,7 @@
 Quickly Add and Check Items Off Your Grocery List.
 
     func howThisAppCreated() {
-        print(" 100% Swift.")
+        print("- 100% Swift.")
         print("- No Storyboard.")
         print("- XCTest included.")
         print("- CoreData.")

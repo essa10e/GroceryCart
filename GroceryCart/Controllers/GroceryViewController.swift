@@ -166,6 +166,7 @@ extension GroceryViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // will implement the delete button later...
         //deleteData()
 
         fetchData()
@@ -198,7 +199,6 @@ extension GroceryViewController {
     func fetchData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<GroceryMO>(entityName: "GroceryDB")
         
         do {

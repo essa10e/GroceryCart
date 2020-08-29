@@ -20,7 +20,6 @@ class AddGroceryCardViewController: UIViewController {
         card.translatesAutoresizingMaskIntoConstraints = false
         card.backgroundColor = peachColor
         card.layer.cornerRadius = 5
-        
         return card
     }()
     
@@ -53,7 +52,7 @@ class AddGroceryCardViewController: UIViewController {
     fileprivate let itemNameLabel: UILabel = {
         let iLabel = UILabel()
         iLabel.translatesAutoresizingMaskIntoConstraints = false
-        iLabel.text = "Item:"
+        iLabel.text = "Item"
         iLabel.textColor = navyBlueColor
         iLabel.font = UIFont.boldSystemFont(ofSize: 30)
         iLabel.backgroundColor = .lightGray
@@ -72,7 +71,7 @@ class AddGroceryCardViewController: UIViewController {
     let quantityLabel: UILabel = {
         let qLabel = UILabel()
         qLabel.translatesAutoresizingMaskIntoConstraints = false
-        qLabel.text = "Quantity:"
+        qLabel.text = "Quantity"
         qLabel.textColor = navyBlueColor
         qLabel.font = UIFont.boldSystemFont(ofSize: 30)
         qLabel.backgroundColor = .lightGray
@@ -84,21 +83,25 @@ class AddGroceryCardViewController: UIViewController {
         stepper.translatesAutoresizingMaskIntoConstraints = false
         stepper.minimumValue = 1
         stepper.maximumValue = 45
+        //stepper.autorepeat = false
+        stepper.isContinuous = false
         stepper.tintColor = navyBlueColor
         stepper.addTarget(self, action: #selector(stepperValue), for: .touchUpInside)
         return stepper
     }()
+    
     @objc func stepperValue(_ sender: UIStepper) {
-        quantityStepperLabel.text = "\(sender.value)"
+        quantityStepperLabel.text = "\(Int(sender.value))"
     }
+    
     let quantityStepperLabel: UILabel = {
         let sLabel = UILabel()
         sLabel.translatesAutoresizingMaskIntoConstraints = false
         sLabel.text = "1"
+        sLabel.textAlignment = .center
         sLabel.font = UIFont.boldSystemFont(ofSize: 30)
         sLabel.backgroundColor = .lightGray
-        sLabel.layer.cornerRadius = 50
-        sLabel.clipsToBounds = true
+        sLabel.layer.masksToBounds = true
         sLabel.layer.borderWidth = 1
         sLabel.layer.borderColor = navyBlueColor.cgColor
         return sLabel
@@ -107,7 +110,7 @@ class AddGroceryCardViewController: UIViewController {
     fileprivate let noteLabel: UILabel = {
         let iLabel = UILabel()
         iLabel.translatesAutoresizingMaskIntoConstraints = false
-        iLabel.text = "Note:"
+        iLabel.text = "Note"
         iLabel.textColor = navyBlueColor
         iLabel.font = UIFont.boldSystemFont(ofSize: 30)
         iLabel.backgroundColor = .lightGray
@@ -118,7 +121,7 @@ class AddGroceryCardViewController: UIViewController {
         let nTextField = UITextField()
         nTextField.translatesAutoresizingMaskIntoConstraints = false
         nTextField.placeholder = "Any specific detail..."
-        nTextField.borderStyle = .line
+        nTextField.borderStyle = .bezel
         nTextField.layer.borderColor = navyBlueColor.cgColor
         return nTextField
     }()
@@ -127,9 +130,26 @@ class AddGroceryCardViewController: UIViewController {
         let sBtn = UIButton()
         sBtn.translatesAutoresizingMaskIntoConstraints = false
         sBtn.setTitle("Submit", for: .normal)
-        sBtn.backgroundColor = .red
+        sBtn.backgroundColor = UIColor(red: 0/255, green: 160/255, blue: 0/255, alpha: 1)
         return sBtn
     }()
+    
+    let cancelBtn: UIButton = {
+        let cBtn = UIButton()
+        cBtn.translatesAutoresizingMaskIntoConstraints = false
+        cBtn.setTitle("Cancel", for: .normal)
+        cBtn.backgroundColor = UIColor(red: 220/255, green: 20/255, blue: 60/255, alpha: 1)
+        cBtn.addTarget(self, action: #selector(cancelGroceryItem), for: .touchUpInside)
+        return cBtn
+    }()
+    
+    @objc func cancelGroceryItem() {
+        self.dismiss(animated: true)
+        self.itemNameTextField.text?.removeAll()
+        self.noteTextField.text?.removeAll()
+        self.quantityStepperLabel.text = "1"
+        self.quantityStepper.value = 1.0
+    }
     
     // MARK:- Set Up Views
     func setupViews() {
@@ -148,15 +168,16 @@ class AddGroceryCardViewController: UIViewController {
         cardView.addSubview(quantityStepperLabel)
         
         cardView.addSubview(submitBtn)
+        cardView.addSubview(cancelBtn)
         
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            cardView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
             // CardViewHandleArea:
-            cardViewHandleArea.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 2),
+            cardViewHandleArea.topAnchor.constraint(equalTo: cardView.safeAreaLayoutGuide.topAnchor, constant: 2),
             cardViewHandleArea.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 2),
             cardViewHandleArea.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -2),
             cardViewHandleArea.heightAnchor.constraint(equalToConstant: 80),
@@ -195,14 +216,15 @@ class AddGroceryCardViewController: UIViewController {
             
             quantityStepperLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 10),
             quantityStepperLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
-            quantityStepperLabel.widthAnchor.constraint(equalToConstant: 100),
-            quantityStepperLabel.heightAnchor.constraint(equalToConstant: 100),
+            quantityStepperLabel.widthAnchor.constraint(equalToConstant: 70),
+            quantityStepperLabel.heightAnchor.constraint(equalToConstant: 70),
             
             quantityStepper.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 10),
-            quantityStepper.leadingAnchor.constraint(equalTo: quantityStepperLabel.trailingAnchor, constant: 5),
+            //quantityStepper.leadingAnchor.constraint(equalTo: quantityStepperLabel.trailingAnchor, constant: 5),
             quantityStepper.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
             quantityStepper.widthAnchor.constraint(equalToConstant: 100),
             quantityStepper.heightAnchor.constraint(equalToConstant: 100),
+            
             
             
             
@@ -210,9 +232,13 @@ class AddGroceryCardViewController: UIViewController {
             submitBtn.topAnchor.constraint(equalTo: quantityStepper.bottomAnchor, constant: 10),
             submitBtn.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
             submitBtn.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
-            //submitBtn.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 5),
-            //submitBtn.widthAnchor.constraint(equalToConstant: 100),
-            submitBtn.heightAnchor.constraint(equalToConstant: 50)
+            submitBtn.heightAnchor.constraint(equalToConstant: 50),
+            
+            // Cancel Button:
+            cancelBtn.topAnchor.constraint(equalTo: submitBtn.bottomAnchor, constant: 10),
+            cancelBtn.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 5),
+            cancelBtn.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -5),
+            cancelBtn.heightAnchor.constraint(equalToConstant: 50),
             
         ])
     }

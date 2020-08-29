@@ -7,6 +7,15 @@
 
 import UIKit
 
+let navyBlueColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
+let peachColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
+
+let darkSlateBlueColor = UIColor(red: 72/255, green: 61/255, blue: 139/255, alpha: 1)
+let lavenderColor = UIColor(red: 230/255, green:230/255, blue: 150/255, alpha: 1)
+let mediumPurpleColor = UIColor(red: 147/255, green: 112/255, blue: 219/255, alpha: 1)
+let slateBlueColor = UIColor(red: 106/255, green: 90/255, blue: 205/255, alpha: 1)
+
+
 class LaunchScreen: UIViewController {
     
     // MARK:- LaunchScreen Logo:

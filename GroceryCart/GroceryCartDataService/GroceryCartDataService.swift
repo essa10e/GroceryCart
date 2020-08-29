@@ -35,8 +35,8 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: grocery_cell_id, for: indexPath) as! GroceryCell
         
         let groceryData = grocerySection.rawValue == 0 ?
-        groceryManager.groceryAtIndex(index: indexPath.row) :
-        groceryManager.checkedOffGroceryAtIndex(index: indexPath.row)
+            groceryManager.groceryAtIndex(index: indexPath.row) :
+            groceryManager.checkedOffGroceryAtIndex(index: indexPath.row)
 
         cell.configGroceryCell(grocery: groceryData)
         
@@ -59,9 +59,6 @@ class GroceryCartDataService: NSObject, UITableViewDataSource, UITableViewDelega
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        <#code#>
-//    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let grocerySection = GrocerySection(rawValue: section) else { fatalError() }

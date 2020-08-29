@@ -27,7 +27,7 @@ class GroceryCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
+        view.backgroundColor = navyBlueColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
         return view
@@ -53,9 +53,9 @@ class GroceryCell: UITableViewCell {
     let noteLabel: UILabel = {
         let bl = UILabel()
         bl.translatesAutoresizingMaskIntoConstraints = false
-        bl.textColor = .white
+        bl.textColor = peachColor
         bl.numberOfLines = 0
-        bl.font = UIFont.systemFont(ofSize: 15)
+        bl.font = UIFont.systemFont(ofSize: 16)
         return bl
     }()
     
@@ -84,7 +84,7 @@ class GroceryCell: UITableViewCell {
             itemLabel.heightAnchor.constraint(equalToConstant: 30),
             
             noteLabel.topAnchor.constraint(equalTo: itemLabel.bottomAnchor, constant: 5),
-            noteLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
+            noteLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 15),
             noteLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5),
             noteLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: 2),
 

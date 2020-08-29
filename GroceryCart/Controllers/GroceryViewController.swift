@@ -10,8 +10,6 @@ import CoreData
 
 let grocery_cell_id = "groceryCell"
 
-let navyBlueColor = UIColor(red: 44/255, green: 57/255, blue: 95/255, alpha: 1)
-let peachColor = UIColor(red: 249/255, green: 181/255, blue: 70/255, alpha: 1)
 
 class GroceryViewController: UIViewController {
     
@@ -66,37 +64,6 @@ class GroceryViewController: UIViewController {
             ])
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<GroceryMO>(entityName: "GroceryDB")
-        
-        do {
-            
-            groceryMO = try managedContext.fetch(fetchRequest)
-            
-            print("\(groceryMO.count)")
-            print("\(groceryMO)")
-            
-            print("-----------------------------")
-            for i in groceryMO {
-//                print("\(i.itemName)")
-//                print("\(i.note)")
-//                print("\(i.quantity)")
-                self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: i.itemName!, note: i.note!, quantity: Int(i.quantity)))
-                
-            }
-            
-            groceryTableView.reloadData()
-            
-        } catch let error as NSError {
-            print("failed to fetch data", error)
-        }
-    }
-    
     
     
     private let titleLabel: UILabel = {
@@ -144,20 +111,25 @@ class GroceryViewController: UIViewController {
         cardView.submitBtn.addTarget(self, action: #selector(submitOneItem), for: .touchUpInside)
     }
     
+    
+    
+    
     @objc func submitOneItem() {
         self.dismiss(animated: true) {
             let _itemName = self.cardView.itemNameTextField.text
             let _note = self.cardView.noteTextField.text
             let _quantity = Int16(self.cardView.quantityStepper.value)
     
-            self.cardView.itemNameTextField.text?.removeAll()
-            self.cardView.noteTextField.text?.removeAll()
-            self.cardView.quantityStepperLabel.text = "1"
             
             self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: _itemName!, note: _note, quantity: Int(_quantity)))
             self.groceryTableView.reloadData()
             
             self.saveGroceryToDB(itemName: _itemName!, note: _note!, quantity: _quantity)
+            
+            self.cardView.itemNameTextField.text?.removeAll()
+            self.cardView.noteTextField.text?.removeAll()
+            self.cardView.quantityStepperLabel.text = "1"
+            self.cardView.quantityStepper.value = 1
         }
     }
     
@@ -186,5 +158,63 @@ class GroceryViewController: UIViewController {
     }
     
     
+}
+
+// MARK:- Extension: Fetch and Delete Data
+extension GroceryViewController {
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //deleteData()
+
+        fetchData()
+    }
+    
+    
+    //  Delete Data:
+    func deleteData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<GroceryMO>(entityName: "GroceryDB")
+        
+        do {
+            groceryMO = try managedContext.fetch(fetchRequest)
+            
+            for i in groceryMO {
+                managedContext.delete(i)
+            }
+            
+            groceryTableView.reloadData()
+            
+        } catch let error as NSError {
+            print("failed to fetch data", error)
+        }
+    }
+    
+    
+    
+    // Fetch Data:
+    func fetchData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<GroceryMO>(entityName: "GroceryDB")
+        
+        do {
+            
+            groceryMO = try managedContext.fetch(fetchRequest)
+            
+            for i in groceryMO {
+                
+                self.dataService.groceryManager?.addGrocery(grocery: Grocery(itemName: i.itemName!, note: i.note!, quantity: Int(i.quantity)))
+                groceryTableView.reloadData()
+                
+            }
+            print("\(groceryMO.count)")
+            
+        } catch let error as NSError {
+            print("failed to fetch data", error)
+        }
+    }
 }
